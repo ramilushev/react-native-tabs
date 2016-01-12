@@ -83,6 +83,7 @@ var styles = StyleSheet.create({
         alignItems: 'center'
     },
     iconView: {
+        flex: 1,
         height: 50,
         justifyContent: 'center',
         alignItems: 'center',
