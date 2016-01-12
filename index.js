@@ -6,7 +6,7 @@ var {
     StyleSheet,
     View,
     Text,
-    TouchableOpacity,
+    TouchableHighlight,
 } = React;
 
 class Tabs extends Component {
@@ -53,12 +53,15 @@ class Tabs extends Component {
         return (
             <View style={[styles.tabbarView, this.props.style]}>
                 {this.props.children.map((el)=>
-                    <TouchableOpacity key={el.props.name+"touch"} 
-                       style={[styles.iconView, this.props.iconStyle]} 
+                    <TouchableHighlight key={el.props.name+"touch"} 
+                       style={[styles.iconView, this.props.iconStyle]}
+                       underlayColor={'transparent'}
                        onPress={()=>!self.props.locked && self.onSelect(el)} 
                        onLongPress={()=>self.props.locked && self.onSelect(el)}>
+                       <View>
                          {!self.props.selected && (self.state.selected == el.props.name) ? React.cloneElement(el, self.state.props) : el}
-                    </TouchableOpacity>
+                        </View>
+                    </TouchableHighlight>
                 )}
             </View>
         );
@@ -69,7 +72,6 @@ var styles = StyleSheet.create({
         flex: 1
     },
     tabbarView: {
-        position:'absolute',
         bottom:0,
         right:0,
         left:0,
@@ -81,7 +83,6 @@ var styles = StyleSheet.create({
         alignItems: 'center'
     },
     iconView: {
-        flex: 1,
         height: 50,
         justifyContent: 'center',
         alignItems: 'center',
